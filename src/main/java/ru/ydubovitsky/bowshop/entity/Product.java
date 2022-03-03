@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="\"ProductTable\"")
 public class Product {
 
     @Id
