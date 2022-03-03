@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+@CrossOrigin
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/category")
@@ -22,12 +23,12 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Category>> getAllCategories() {
-        return ResponseEntity.ok(categoryService.getAllCategories());
+        List<Category> allCategories = categoryService.getAllCategories();
+        return ResponseEntity.ok(allCategories);
     }
 
-    @CrossOrigin
     @RequestMapping(path = "/add", method = POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     public ResponseEntity<Category> addCategory(CategoryDto categoryDto) {
         Category category = categoryService.addCategory(categoryDto);
