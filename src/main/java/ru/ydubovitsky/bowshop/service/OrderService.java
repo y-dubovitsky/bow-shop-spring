@@ -49,4 +49,13 @@ public class OrderService {
                 .collect(Collectors.toList());
         return orderList;
     }
+
+    public void deleteOrder(Long id) {
+        Order foundOrder
+                = orderPagingAndSortingRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException(String.format("Order with id: %s", id)));
+        orderPagingAndSortingRepository.delete(foundOrder);
+        log.info(String.format("Order id: %s - deleted!", id));
+    }
 }
