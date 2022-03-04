@@ -1,7 +1,7 @@
 package ru.ydubovitsky.bowshop.request.response;
 
 import lombok.*;
-import ru.ydubovitsky.bowshop.entity.OrderStatus;
+import ru.ydubovitsky.bowshop.entity.Order;
 
 @Builder
 @Setter @Getter
@@ -9,8 +9,6 @@ import ru.ydubovitsky.bowshop.entity.OrderStatus;
 @NoArgsConstructor
 public class OrderResponse {
 
-    private Long orderId;
-
-    private OrderStatus orderStatus;
+    private Order order;
 
 }

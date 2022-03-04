@@ -28,6 +28,14 @@ public class ProductService {
         return products;
     }
 
+    public Product getProductById(Integer productId) {
+        Product product = productPagingAndSortingRepository
+                .findById(productId)
+                .orElseThrow(() -> new RuntimeException(String.format("Product with id: %s not found", productId)));
+
+        return product;
+    }
+
     public Product addProduct(ProductDto productDto) {
         Category category = categoryService.getCategoryByName(productDto.getCategory());
         try {

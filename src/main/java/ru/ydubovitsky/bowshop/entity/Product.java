@@ -31,4 +31,7 @@ public class Product {
 
     private byte[] imageByte;
 
+    @OneToOne
+    private OrderItem orderItem;
+
 }

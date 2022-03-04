@@ -8,6 +8,8 @@ import ru.ydubovitsky.bowshop.entity.Order;
 import ru.ydubovitsky.bowshop.request.response.OrderResponse;
 import ru.ydubovitsky.bowshop.service.OrderService;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/v1/order")
@@ -21,9 +23,14 @@ public class OrderController {
         Order order = orderService.addOrder(orderDto);
         return ResponseEntity.ok(OrderResponse
                 .builder()
-                .orderId(order.getId())
-                .orderStatus(order.getOrderStatus())
+                .order(order)
                 .build());
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Order>> getAllOrders() {
+        List<Order> allOrders = orderService.getAllOrders();
+        return ResponseEntity.ok(allOrders);
     }
 
 }

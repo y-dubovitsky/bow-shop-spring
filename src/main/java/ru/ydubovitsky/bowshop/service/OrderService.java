@@ -10,7 +10,10 @@ import ru.ydubovitsky.bowshop.entity.Order;
 import ru.ydubovitsky.bowshop.entity.OrderStatus;
 import ru.ydubovitsky.bowshop.repository.OrderPagingAndSortingRepository;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Slf4j
 @Service
@@ -38,5 +41,12 @@ public class OrderService {
         log.info(String.format("Order with id: %s - saved!", savedOrder.getId()));
 
         return savedOrder;
+    }
+
+    public List<Order> getAllOrders() {
+        List<Order> orderList = StreamSupport.stream(
+                orderPagingAndSortingRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+        return orderList;
     }
 }

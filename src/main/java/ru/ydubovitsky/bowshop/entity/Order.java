@@ -1,5 +1,6 @@
 package ru.ydubovitsky.bowshop.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Order {
     private OrderStatus orderStatus;
 
     @OneToOne
+    @NotNull
     private Contacts contacts;
 
 }

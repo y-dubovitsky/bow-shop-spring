@@ -1,5 +1,6 @@
 package ru.ydubovitsky.bowshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -35,5 +36,6 @@ public class Contacts {
     private String email;
 
     @OneToOne
+    @JsonIgnore
     private Order order;
 }

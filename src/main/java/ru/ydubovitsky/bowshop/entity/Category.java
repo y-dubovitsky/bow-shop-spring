@@ -1,5 +1,6 @@
 package ru.ydubovitsky.bowshop.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
+    @Column(unique = true)
     private String name;
 
     private byte[] imageByte;

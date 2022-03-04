@@ -1,5 +1,6 @@
 package ru.ydubovitsky.bowshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,11 +17,13 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer productId;
+    @OneToOne
+    private Product product;
 
     private Short count;
 
     @ManyToOne
+    @JsonIgnore
     private Order order;
 
 }
