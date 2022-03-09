@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.ydubovitsky.bowshop.dto.OrderDto;
 import ru.ydubovitsky.bowshop.entity.Order;
+import ru.ydubovitsky.bowshop.mail.EmailServiceImpl;
 import ru.ydubovitsky.bowshop.request.response.OrderResponse;
 import ru.ydubovitsky.bowshop.service.OrderService;
 
@@ -18,10 +19,16 @@ import java.util.List;
 public class OrderController {
 
     private OrderService orderService;
+    private final EmailServiceImpl emailService;
 
     @PostMapping("/add")
     public ResponseEntity<?> addOrder(@RequestBody OrderDto orderDto) {
         Order order = orderService.addOrder(orderDto);
+        emailService.sendSimpleMessage(
+                order.getContacts().getEmail(),
+                String.format("Migliori Archi Order %s - accepted!", order.getId()),
+                "Hello, your order from Migliori Archi - accepted!"
+        );
         return ResponseEntity.ok(OrderResponse
                 .builder()
                 .order(order)
