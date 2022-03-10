@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import ru.ydubovitsky.bowshop.security.model.AppUserRole;
 
 @Slf4j
 @Configuration
@@ -39,9 +40,16 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         UserDetails user = User.builder()
                 .username("u")
                 .password(passwordEncoder.encode("u"))
-                .roles("USER")
+                .roles(AppUserRole.USER.name())
                 .build();
+
+        UserDetails admin = User.builder()
+                .username("a")
+                .password(passwordEncoder.encode("a"))
+                .roles(AppUserRole.ADMIN.name())
+                .build();
+
         log.info(String.format("%s - loaded", user.getUsername()));
-        return new InMemoryUserDetailsManager(user);
+        return new InMemoryUserDetailsManager(user, admin);
     }
 }
