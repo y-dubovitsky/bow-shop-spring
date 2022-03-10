@@ -1,4 +1,4 @@
-package ru.ydubovitsky.bowshop.security.model;
+package ru.ydubovitsky.bowshop.security.model.enums;
 
 public enum AppUserRole {
 
