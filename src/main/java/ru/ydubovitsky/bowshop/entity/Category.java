@@ -2,9 +2,9 @@ package ru.ydubovitsky.bowshop.entity;
 
 import com.sun.istack.NotNull;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -30,4 +30,14 @@ public class Category {
     @OneToMany
     private List<Product> products;
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", imageByte=" + Arrays.toString(imageByte) +
+                ", description='" + description + '\'' +
+                ", products=" + products +
+                '}';
+    }
 }
