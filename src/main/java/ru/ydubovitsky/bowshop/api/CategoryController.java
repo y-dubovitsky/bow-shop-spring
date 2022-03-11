@@ -3,6 +3,7 @@ package ru.ydubovitsky.bowshop.api;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ public class CategoryController {
         return ResponseEntity.ok(allCategories);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(path = "/add", method = POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     public ResponseEntity<Category> addCategory(CategoryDto categoryDto) {
         Category category = categoryService.addCategory(categoryDto);

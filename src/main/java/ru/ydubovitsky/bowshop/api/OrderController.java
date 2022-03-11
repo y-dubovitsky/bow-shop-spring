@@ -3,6 +3,7 @@ package ru.ydubovitsky.bowshop.api;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ydubovitsky.bowshop.dto.OrderDto;
 import ru.ydubovitsky.bowshop.entity.Order;
@@ -41,6 +42,7 @@ public class OrderController {
         return ResponseEntity.ok(allOrders);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteOrder(@PathVariable(value="id") Long id) {
         orderService.deleteOrder(id);
