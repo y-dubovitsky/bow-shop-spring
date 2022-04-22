@@ -57,4 +57,8 @@ public class ProductService {
         }
     }
 
+    public void deleteProduct(Integer id) {
+        productPagingAndSortingRepository.deleteById(id);
+    }
+
 }

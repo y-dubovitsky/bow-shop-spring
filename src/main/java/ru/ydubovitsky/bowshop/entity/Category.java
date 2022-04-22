@@ -25,6 +25,7 @@ public class Category {
 
     private byte[] imageByte;
 
+    @Column(columnDefinition="TEXT")
     private String description;
 
     @OneToMany

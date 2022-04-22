@@ -37,4 +37,12 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Integer> deleteProduct(@PathVariable("id") Integer id) {
+        productService.deleteProduct(id);
+        log.info(String.format("Product #%s deleted", id));
+        return ResponseEntity.ok(id);
+    }
+
 }
